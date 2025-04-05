@@ -1,0 +1,17 @@
+{
+  "name": "cc_p",
+  "version": "1.0.0",
+  "description": "Minimal To-Do app with Node.js, Express, and SQLite, ready for Render deployment",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "express": "^5.1.0"
+  }
+}
