@@ -1,26 +1,27 @@
 const express = require('express');
 const app = express();
-// const db = require('better-sqlite3')('todo.db');
-
 const path = require('path');
 const fs = require('fs');
-const express = require('express');
-const dbPath = path.join(__dirname, 'data');
-if (!fs.existsSync(dbPath)) fs.mkdirSync(dbPath);
-const db = require('better-sqlite3')(path.join(dbPath, 'todo.db'));
+const Database = require('better-sqlite3');
 
+// Ensure database directory exists
+const dbDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
 
+// Connect to SQLite database
+const db = new Database(path.join(dbDir, 'todo.db'));
 
-const PORT = 3000;
-
+// Express config
 app.use(express.json());
 app.use(express.static(__dirname));
 
 // Create table if it doesn’t exist
-db.prepare(`CREATE TABLE IF NOT EXISTS todos (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  text TEXT
-)`).run();
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS todos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT
+  )
+`).run();
 
 // Get todos
 app.get('/api/todos', (req, res) => {
@@ -41,4 +42,6 @@ app.delete('/api/todos/:id', (req, res) => {
   res.sendStatus(204);
 });
 
+// Start server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Running at http://localhost:${PORT}`));
