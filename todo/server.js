@@ -30,9 +30,9 @@ app.get('/api/todos', (req, res) => {
 });
 
 
-app.get('/download-db', (req, res) => {
-  res.download(path.join(dbDir, 'todo.db'), 'todo.db');
-});
+// app.get('/download-db', (req, res) => {
+//   res.download(path.join(dbDir, 'todo.db'), 'todo.db');
+// });
 
 
 // Add todo
