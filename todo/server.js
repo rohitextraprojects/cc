@@ -29,6 +29,12 @@ app.get('/api/todos', (req, res) => {
   res.json(todos);
 });
 
+
+app.get('/download-db', (req, res) => {
+  res.download(path.join(dbDir, 'todo.db'), 'todo.db');
+});
+
+
 // Add todo
 app.post('/api/todos', (req, res) => {
   const { text } = req.body;
