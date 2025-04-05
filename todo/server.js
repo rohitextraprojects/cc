@@ -8,7 +8,7 @@ const Database = require('better-sqlite3');
 const dbDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir);
 
-// Connect to SQLite database
+
 const db = new Database(path.join(dbDir, 'todo.db'));
 
 // Express config
