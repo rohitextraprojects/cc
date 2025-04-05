@@ -4,9 +4,11 @@ const app = express();
 
 const path = require('path');
 const fs = require('fs');
-const DB_DIR = path.join(__dirname, 'data');
-if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR);
-const db = require('better-sqlite3')(path.join(DB_DIR, 'todo.db'));
+const express = require('express');
+const dbPath = path.join(__dirname, 'data');
+if (!fs.existsSync(dbPath)) fs.mkdirSync(dbPath);
+const db = require('better-sqlite3')(path.join(dbPath, 'todo.db'));
+
 
 
 const PORT = 3000;
